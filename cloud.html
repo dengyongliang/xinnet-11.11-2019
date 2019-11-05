@@ -633,7 +633,7 @@
               dataDiskSize: 0,
               dataDiskBackupId: "",
               goodsCode: 30170971228938,
-              roomId: 44040192,
+              roomName: 44040192,
               autoBackupWeekNum: 3,
               autoBackupDayNum: 3,
               bandwidth: 1,
@@ -656,7 +656,7 @@
               dataDiskSize: 0,
               dataDiskBackupId: "",
               goodsCode: 66390565114493,
-              roomId: 44040192,
+              roomName: 44040192,
               autoBackupWeekNum: 3,
               autoBackupDayNum: 3,
               bandwidth: 2,
@@ -677,7 +677,7 @@
           XW_GLOBAL_BUY_CLOUD_PARAM = param;
           getCoupon4(dataCode, param);
         }else{
-          bgw_tc("请先登录新网账号，再参与活动！<br /><br /><a href = 'https://login.xinnet.com/?service=http://www.xinnet.com/composite/zt/20191111.html' target = '_blank'>立即登录</a>  <a href = 'http://www.xinnet.com/user/user.do?method=toRegister' target = '_blank'>新用户免费注册</a>");
+          bgw_tc("请先登录新网账号，再参与活动！<br /><br /><a href = 'https://login.xinnet.com/?service=http://www.xinnet.com/cs/zt/20191111.html ' target = '_blank'>立即登录</a>  <a href = 'http://www.xinnet.com/user/user.do?method=toRegister' target = '_blank'>新用户免费注册</a>");
           // window.open("http://www.xinnet.com/user/user.do?method=toRegister", "_blank");
         }
       });
@@ -793,7 +793,7 @@
               switch(rescode){
                   //领取成功
                   case "0":
-                    showPop("恭喜您，已获取4折抢购资格！", "javascript:addInCar()", "前往购买云主机");
+                    showPop("恭喜您，已获取4折抢购资格！<br />完成<a style='color:#f00' href='http://www.xinnet.com/service/cjwt/hy/shiming/index.html' target='_blank'>实名认证</a>方可激活使用", "javascript:addInCar()", "前往购买云主机");
                     break;
                   //活动已结束
                   case "1":
@@ -809,7 +809,7 @@
                       break;
                   //重复领券
                   case "4":
-                      bgw_tc("您已领取4折购买特价机型资格！同一用户不可重复申请，如尚未完成订单，前往完成订单支付即可。", "前往完成订单", "javascript:addInCar()");
+                  bgw_tc("您已领取4折购买特价机型资格！同一用户不可重复申请，如尚未完成订单，前往完成订单支付即可。<br /><br />完成<a style='color:#f00' href='http://www.xinnet.com/service/cjwt/hy/shiming/index.html' target='_blank'>实名认证</a>方可激活使用", "前往完成订单", "javascript:addInCar()");
                       break;
                   //绑定出错
                   case "9":
@@ -839,15 +839,17 @@
       }
       function addInCar() {
           $.ajax({
-            url: "http://www.xinnet.com/shopCartAction.do",
+            url: "http://www.xinnet.com/pppcloud/pppcloud.do?method=addPPPCloudToCart",
             type: 'post',
             async: false,
             data: XW_GLOBAL_BUY_CLOUD_PARAM,
+            datatype: "html",
             beforeSend: function () { },
             success: function (txtDoc) {
-              if (txtDoc && txtDoc.indexOf("<") < 0) {
-                $('#cartview_nolink').show();
-              }
+              // if (txtDoc && txtDoc.indexOf("<") < 0) {
+              //   $('#cartview_nolink').show();
+              // }
+              $('#cartview_nolink').show();
               getShopCartNum();
               traker.traceCount('xinnet.com', '110', 'fw55');
             }

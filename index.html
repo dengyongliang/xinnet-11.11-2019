@@ -944,7 +944,7 @@
               dataDiskSize: 0,
               dataDiskBackupId: "",
               goodsCode: 30170971228938,
-              roomId: 44040192,
+              roomName: 44040192,
               autoBackupWeekNum: 3,
               autoBackupDayNum: 3,
               bandwidth: 1,
@@ -967,7 +967,7 @@
               dataDiskSize: 0,
               dataDiskBackupId: "",
               goodsCode: 66390565114493,
-              roomId: 44040192,
+              roomName: 44040192,
               autoBackupWeekNum: 3,
               autoBackupDayNum: 3,
               bandwidth: 2,
@@ -1033,7 +1033,7 @@
           bgw_tc("请确定是否已领取体验券并完成企业认证？如没有请先完成前两个步骤。", "确定","javascript:addMailInCar();");
         }
         else{
-          bgw_tc("请先登录账号！", "登录","https://login.xinnet.com/?service=http://www.xinnet.com/composite/zt/2018Y1012mail.html");
+          bgw_tc("请先登录账号！", "登录","https://login.xinnet.com/?service=http://www.xinnet.com/composite/zt/20191111.html");
         }
       });
       $(".section .gzShow").click(function(){
@@ -1251,7 +1251,7 @@
               switch(rescode){
                   //领取成功
                   case "0":
-                    showPop("恭喜您，已获取4折抢购资格！", "javascript:addInCar()", "前往购买云主机");
+                    showPop("恭喜您，已获取4折抢购资格！<br />完成<a style='color:#f00' href='http://www.xinnet.com/service/cjwt/hy/shiming/index.html' target='_blank'>实名认证</a>方可激活使用", "javascript:addInCar()", "前往购买云主机");
                     break;
                   //活动已结束
                   case "1":
@@ -1267,7 +1267,7 @@
                       break;
                   //重复领券
                   case "4":
-                      bgw_tc("您已领取4折购买特价机型资格！同一用户不可重复申请，如尚未完成订单，前往完成订单支付即可。", "前往完成订单", "javascript:addInCar()");
+                      bgw_tc("您已领取4折购买特价机型资格！同一用户不可重复申请，如尚未完成订单，前往完成订单支付即可。<br /><br />完成<a style='color:#f00' href='http://www.xinnet.com/service/cjwt/hy/shiming/index.html' target='_blank'>实名认证</a>方可激活使用", "前往完成订单", "javascript:addInCar()");
                       break;
                   //绑定出错
                   case "9":
@@ -1307,15 +1307,17 @@
       }
       function addInCar() {
           $.ajax({
-            url: "http://www.xinnet.com/shopCartAction.do",
+            url: "http://www.xinnet.com/pppcloud/pppcloud.do?method=addPPPCloudToCart",
             type: 'post',
             async: false,
             data: XW_GLOBAL_BUY_CLOUD_PARAM,
+            datatype: "html",
             beforeSend: function () { },
             success: function (txtDoc) {
-              if (txtDoc && txtDoc.indexOf("<") < 0) {
-                $('#cartview_nolink').show();
-              }
+              // if (txtDoc && txtDoc.indexOf("<") < 0) {
+              //   $('#cartview_nolink').show();
+              // }
+              $('#cartview_nolink').show();
               getShopCartNum();
               traker.traceCount('xinnet.com', '110', 'fw55');
             }
