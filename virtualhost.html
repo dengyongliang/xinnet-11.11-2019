@@ -1020,7 +1020,7 @@
             $(that).parents(".virMd2r_item").find(".eleDomain_wait1").css("display", "block").siblings().css("display", "none");
             // $(".eleDomain_wait"+dm).css("display", "block").siblings().css("display", "none");
             $.ajax({
-                url: "http://domaincheck.xinnet.com/domainCheck?searchRandom=4&prefix=" + prefix + "&suffix=.com",
+                url: "http://domaincheck.xinnet.com/domainCheck?searchRandom=4&prefix=" + prefix + "&suffix=" + suffix,
                 type: 'get',
                 async: true,
                 //contentType : "application/json; charset=utf-8",
